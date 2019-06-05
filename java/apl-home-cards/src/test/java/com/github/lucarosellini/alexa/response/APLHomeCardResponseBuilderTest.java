@@ -1,7 +1,7 @@
-package com.github.lucarosellini.response;
+package com.github.lucarosellini.alexa.response;
 
 import com.amazon.ask.response.ResponseBuilder;
-import com.github.lucarosellini.util.Utils;
+import com.github.lucarosellini.alexa.util.Utils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

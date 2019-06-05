@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.github.lucarosellini</groupId>
+    <groupId>com.github.lucarosellini.alexa</groupId>
     <artifactId>apl-home-cards</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -16,46 +16,38 @@
         <ask.sdk.version>2.18.0</ask.sdk.version>
     </properties>
 
-    <!-- CHANGE ME -->
-    <name>Alexa Custom Skill</name>
+    <name>APL Home Cards library</name>
 
-    <!-- CHANGE ME -->
-    <url>http://www.myorganization.org</url>
+    <description>A way to wrap the response builder to transparently send home card like responses to multimodal devices using APL.</description>
+
+    <url>https://github.com/lucarosellini/APLHomeCards</url>
+
+    <licenses>
+        <license>
+            <name>Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Luca Rosellini</name>
+            <email>luca.rosellini@gmail.com</email>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git@github.com:lucarosellini/APLHomeCards.git</connection>
+        <developerConnection>scm:git:git@github.com:lucarosellini/APLHomeCards.git</developerConnection>
+        <url>https://github.com/lucarosellini/APLHomeCards</url>
+    </scm>
 
     <dependencies>
         <dependency>
             <groupId>com.amazon.alexa</groupId>
             <artifactId>ask-sdk</artifactId>
             <version>${ask.sdk.version}</version>
-            <exclusions>
-                <!-- Remove the following exclusion if you need servlet support -->
-                <exclusion>
-                    <groupId>com.amazon.alexa</groupId>
-                    <artifactId>ask-sdk-servlet-support</artifactId>
-                </exclusion>
-                <!-- Add the following exclusion if you do not need AWS Lambda support -->
-                <!--exclusion>
-                    <groupId>com.amazon.alexa</groupId>
-                    <artifactId>ask-sdk-lambda-support</artifactId>
-                </exclusion-->
-
-                <!-- DynamoDB dependency has a HUGE footprint in the final JAR!
-                     Add the following exclusion if you don't need dynamodb persistence -->
-                <exclusion>
-                    <groupId>com.amazon.alexa</groupId>
-                    <artifactId>ask-sdk-dynamodb-persistence-adapter</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.8.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.8.2</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -69,29 +61,56 @@
             <version>2.28.2</version>
             <scope>test</scope>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
+            <!-- the following two plugins are needed to comply with Maven Central policies -->
             <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.1.0</version>
-                <configuration>
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
-                        <id>make-assembly</id> <!-- this is used for inheritance merges -->
-                        <phase>package</phase> <!-- bind to the packaging phase -->
+                        <id>attach-sources</id>
                         <goals>
-                            <goal>single</goal>
+                            <goal>jar</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>empty-javadoc-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>javadoc</classifier>
+                            <classesDirectory>${basedir}/javadoc</classesDirectory>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <!-- Repository for snapshots -->
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <!-- Repository for releases -->
+        <repository>
+            <id>nexus-releases</id>
+            <name>Nexus Release Repository</name>
+            <url>http://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 </project>

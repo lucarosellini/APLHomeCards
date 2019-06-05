@@ -1,9 +1,9 @@
-package com.github.lucarosellini.interceptor;
+package com.github.lucarosellini.alexa.interceptor;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.request.interceptor.GenericRequestInterceptor;
-import com.github.lucarosellini.response.APLHomeCardResponseBuilder;
-import com.github.lucarosellini.util.Utils;
+import com.github.lucarosellini.alexa.util.Utils;
+import com.github.lucarosellini.alexa.response.APLHomeCardResponseBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

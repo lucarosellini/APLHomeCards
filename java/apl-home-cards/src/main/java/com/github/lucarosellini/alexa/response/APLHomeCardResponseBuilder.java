@@ -1,4 +1,4 @@
-package com.github.lucarosellini.response;
+package com.github.lucarosellini.alexa.response;
 
 import com.amazon.ask.model.Directive;
 import com.amazon.ask.model.Intent;
@@ -11,8 +11,8 @@ import com.amazon.ask.model.ui.Card;
 import com.amazon.ask.model.ui.Image;
 import com.amazon.ask.model.ui.PlayBehavior;
 import com.amazon.ask.response.ResponseBuilder;
-import com.github.lucarosellini.util.Constants;
-import com.github.lucarosellini.util.Utils;
+import com.github.lucarosellini.alexa.util.Constants;
+import com.github.lucarosellini.alexa.util.Utils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
